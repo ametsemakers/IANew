@@ -24,32 +24,53 @@ class AppController extends AbstractController
 
     /**
      * @Route("/blog/{page}", name="blog", requirements={"page"="\d+"})
+     * @Route("/blog/{keyword}/{page}", name="blog_keyword", requirements={"page"="\d+"})
      */
-    public function blog(Request $request, KeywordGenerator $keywordGenerator,int $page = 1)
+    public function blog(Request $request, KeywordGenerator $keywordGenerator,int $page = 1, string $keyword = null)
     {
         if (!null == $request->query->get('page'))
         {
             $page = $request->query->get('page');
         }
-        
-        
-        $articles = $this->getDoctrine()
+        // if a keyword is passed, get the list of articles by keyword
+        if (!null == $request->attributes->get('keyword'))
+        {
+            $keyword = $request->attributes->get('keyword');
+
+            // repository takes 3 arguments: nb of results per page, pagenumber, keyword to search
+            $pages = $this->getDoctrine()
+            ->getRepository(PAGE::class)
+            ->findBlogArticlesByKeyword(5, $page, $keyword)
+            ;
+
+            $keywords = $keywordGenerator->getPageKeywords($pages);
+
+            return $this->render('main/blog.html.twig', [
+                'pages'    => $pages,
+                'keywords' => $keywords,
+            ]);
+        }
+        // else get all articles
+        else
+        {
+            $articles = $this->getDoctrine()
             ->getRepository(BLOCK::class)
             ->findBlogBlocks()
-        ;
-        $pages = $this->getDoctrine()
-            ->getRepository(PAGE::class)
-            ->findBlogArticles(5, $page)
-        ;
+            ;
+            $pages = $this->getDoctrine()
+                ->getRepository(PAGE::class)
+                ->findBlogArticles(5, $page)
+            ;
 
-        $keywords = $keywordGenerator->getPageKeywords($pages);
+            $keywords = $keywordGenerator->getPageKeywords($pages);
 
-        return $this->render('main/blog.html.twig', [
-            'articles' => $articles,
-            'page'     => $page,
-            'pages'    => $pages,
-            'keywords' => $keywords,
-        ]);
+            return $this->render('main/blog.html.twig', [
+                'articles' => $articles,
+                'page'     => $page,
+                'pages'    => $pages,
+                'keywords' => $keywords,
+            ]);
+        }   
     }
 
     /**

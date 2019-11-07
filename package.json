@@ -4,6 +4,8 @@
     "jquery": "^3.4.1",
     "jquery.dirtyforms": "^2.0.0",
     "lightbox2": "^2.9.0",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
     "semantic-ui-css": "^2.2.0"
   },
   "devDependencies": {

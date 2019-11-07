@@ -1,17 +1,13 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Blog{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-{% endblock %}
+{% block title %} - Blog{% endblock %}
 
 {% block body %}
 
 <div class="row">
     <div class="col col-md-12" id="blog-menu">
     </div>
-    {{ dump(page) }}
+    {#{ dump(page) }#}
     {{ dump(pages) }}
     
 
@@ -39,7 +35,7 @@
                             {% endif %}
                                 
                             {{ translation.content | truncate(700, true) | raw }}
-                            <a href="#">lire l'article</a>
+                            <a href="{{ path('blog_show', {'id': translation.id, 'slug': translation.slug}) }}">lire l'article</a>
                             <br />
                             <hr>
                             <div class="row">
@@ -48,7 +44,7 @@
                             
                                     {% for item in foo %}
                                             
-                                        <a href="{#{ path('blog_search', {'keyword': category.name}) }#}">
+                                        <a href="{{ path('blog_keyword', {'keyword': item}) }}">
                                             <span class="badge badge-warning">
                                                 {{ item }}
                                             </span>
@@ -81,8 +77,8 @@
                 </p>
             {% endif %}
         </div>
-        <div class="row">
-            <div class="col col-md-12">
+        <div class="row mt-4 justify-content-center paginate">
+            <div class="col col-md-6 pagination-col">
                 {% if pages.haveToPaginate %}
                     {{ pagerfanta(pages, 'twitter_bootstrap4') }}
                 {% endif %}
@@ -98,7 +94,7 @@
         {% if keywords is not null %}
             {% for keyword in keywords %}
 
-                <a href="{#{ path('blog_search', {'keyword': category.name}) }#}">
+                <a href="{{ path('blog_keyword', {'keyword': keyword}) }}">
                     <h6>{{ keyword }}</h6>
                 </a>
     
@@ -113,8 +109,4 @@
         <br />
     </div>
 </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
 {% endblock %}

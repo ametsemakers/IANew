@@ -1,0 +1,342 @@
+{% extends "layout.html.twig" %}
+
+{% block title %} - Home{% endblock %}
+
+    
+{% block body %}
+    <div id="hero-image-container">
+        <img src="{{ asset('assets/main/img/heroImage.png') }}"
+            alt="hero-image"
+            id="hero-image"
+        />
+        <div id="hero-image-overlay-alt">
+            <div class="row" id="background-home">
+                <div class="col-5 col-md-4 offset-md-1 text-center">
+                    <img src="{{ asset('assets/main/img/logo-transparant.png') }}"
+                        alt="logo"
+                        id="hero-image-logo"
+                    /> 
+                </div>
+                <div id="separation-line-home"></div>
+                <div class="col-7 col-md-6 text-center">
+                    <p id="hero-intro-home">
+                        Massages traditionnels et<br />
+                        alimentation selon<br />
+                        l'Ayurveda.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {# <img src="{{ asset('images/logo.jpg') }}"
+            alt="logo"
+            id="hero-image-overlay"
+        /> #}
+    </div>
+    {#<hr>#}
+
+<div class="width-container">
+    <div class="row" id="second-row-home">
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="health-link-home">
+                <a href="{#{ path('sante') }#}">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Santé
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="massage-link-home">
+                <a href="#">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Massage
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="yoga-link-home">
+                <a href="#">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Yoga
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="beauty-link-home">
+                <a href="#">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Beauté
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="happiness-link-home">
+                <a href="#">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Bonheur
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="round-link-home" id="recipies-link-home">
+                <a href="#">
+                    <span class="round-link-text-home text-center">
+                        <h5>
+                            Recettes
+                        </h5>      
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 yellow-line"></div>
+    {#<hr>#}
+
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-md-9">
+            <div class="row">
+                <div class="col-12 training-title-home">
+                    <h3>Formation / Stage</h3>
+                </div>
+                {% if trainingCourse is defined and not null %}
+                    <div class="col-12 col-md-12 training-title-home">
+                        {{ trainingCourse.title }}
+                    </div>
+                    <div class="col col-md-12 training-title-home">
+                        {{ trainingCourse.content }}
+                    </div>
+                {% else %}
+                    <div class="col-12 training-title-home">
+                        Revenez plus tard, 
+                        il n'y a pas de stage prevu en ce moment.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-3 blogPost-home">
+            <h5 class="yellow-line">Dernier article du blog :</h5>
+            {#<hr>#}
+            <br />
+            <h3 class="yellow-line">{#{ blogPost.title }#}</h3>
+                {#<hr>#}
+                <br />
+                {% if blogPost.images is defined %}
+                    {% for image in blogPost.images %}
+                        <img
+                            src="{{ asset(image.getWebPath) }}"
+                            alt="{{ image.alt }}"
+                            
+                            class="blog-post-image-homepage"
+                        />
+                    {% endfor %}
+                    <br /><br />
+                {% endif %}
+                <p>
+                    {#{ blogPost.content }#}
+                </p>
+                <br />
+                <div class="yellow-line"></div>
+                <div class="row mt-3">
+                    <div class="col col-md-12">
+                        {% if blogPost.categories is defined %}
+                            {% for category in blogPost.categories %}
+                                <a href="">
+                                    <span class="badge badge-primary">
+                                        {{ category.name }}
+                                    </span>
+                                </a>
+                            {% endfor %}
+                            <br /><br />
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-md-12 col-lg-6">
+                        Auteur : {#{ blogPost.author }#}
+                    </div>
+                    <div class="col col-md-12 col-lg-6" id="blogpost-date-home">
+                        Publié le : {#{ blogPost.date|date('d/m/Y') }}
+                        {% if blogPost.updatedAt is not null %}
+                            , modifié le {{ blogPost.updatedAt|date('d/m/Y') }}
+                        {% endif %#}
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col col-md-12">
+                        <a href="{{ path('blog') }}">Plus d'articles...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="row justify-content-center">
+        <div class="col col-md-2">
+            <img src="{{ asset('assets/main/img/symbole.png') }}"
+                alt=""
+                id=""
+                class=""
+            />
+        </div>
+        <div class="col col-md-6">
+            <div class="row" id="home-list">
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Douleurs articulaires
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Insomnies
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Stress
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Elimination des toxines
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Drainage
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-12">
+                    <div class="row no-gutters justify-content-center">
+                        <div class="col col-md-1 text-center">
+                            <img src="{{ asset('assets/main/img/goute.png') }}"
+                                alt="goute"
+                                class="drop-icon"
+                            /> 
+                        </div>
+                        <div class="col col-md-5">
+                            Réequilibration alimentaire
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <img src="{{ asset('assets/main/img/symbole.png') }}"
+                alt=""
+                id=""
+                class=""
+            />
+            {#<div class="rounded-circle" id="img-rose-home">
+            </div>#}
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col col-12 text-center home-font-big">
+            <a href="{{ path('home') }}" id="home-contact-link">Contactez-moi</a> pour prendre une rendez-vous.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-12 text-center home-font-big">
+            Derniers actualités :
+        </div>
+    </div>
+</div>
+            {#{ dump(blogPost) }#}
+    
+    
+
+
+
+{# PAS A RETENIR #}
+
+            {#<div id="header" class="jumbotron">
+                <h1>Page d'accueil<h1>
+                <p>
+                    Bienvenue sur ce site bien vide pour l'instant.
+                    {{ dump(articles) }}
+                </p>
+            </div>
+            {% for message in app.flashes('info') %}
+                <div class="jumbotron mt3">
+                    <p>
+                        {{ message }}
+                    </p>
+                </div>
+            {% endfor %}
+
+
+            <div class="row">
+                <div id="menu" class="col col-md-3">
+                    <h3>Menu</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a href="{#{ path('am_platform_home') }#}{#">Annonces</a></li>
+                        <li class="nav-item"><a href="{{ path('contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col col-md-9">
+                    <h4>Dernières annonces</h4>
+                    {#{ render(controller("AMPlatformBundle:Advert:menu", {'limit': 3})) }#}
+                {#</div>
+            </div>#}
+            {% endblock %}

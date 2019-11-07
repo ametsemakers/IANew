@@ -1,0 +1,97 @@
+
+    <div class="row justify-content-between navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="col-lg-3">
+            <a class="" href="#">
+                <img src="{{ asset('assets/main/img/logo-alternative.jpg') }}"
+                alt="logo"
+                id=""
+                width="50px"
+                height="50px"
+                />
+                L'istant Ayurveda
+            </a>
+        </div>
+        <div class="col-lg-5 collapse navbar-collapse" id="navbarText">
+        
+        
+        
+            <div id="menu-background" class="">
+                <ul class="mainnav align-self-center">
+                    <li><a href="{{ path('home') }}">Accueil</a></li>
+                    <li class="hassubs"><a href="{{ path('home') }}">HomeAlt</a>
+                        <ul class="dropdown">
+                            <li class="subs"><a href="{{ path('history') }}">Histoire</a></li>
+                            <li class="subs hassubs"><a href="#">Link B</a>
+                                <ul class="dropdown">
+                                    <li class="subs"><a href="#">Link 1</a></li>
+                                    <li class="subs"><a href="#">Link 2</a></li>
+                                    <li class="subs"><a href="#">Link 3</a></li>
+                                </ul>
+                            </li>
+                            <li class="subs"><a href="#">Link C</a></li>
+                        </ul>
+                    </li>
+                    <li class="hassubs"><a href="#">Services</a>
+                        <ul class="dropdown">
+                            <li class="subs"><a href="#">Link A</a></li>
+                            <li class="subs"><a href="#">Link B</a></li>
+                            <li class="subs hassubs"><a href="#">Link C</a>
+                                <ul class="dropdown">
+                                    <li class="subs"><a href="#">Link 1</a></li>
+                                    <li class="subs"><a href="#">Link 2</a></li>
+                                    <li class="subs"><a href="#">Link 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('blog') }}">Blog</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                </ul>
+            </div>
+            <br style="clear: both;">
+            
+        </div>
+    </div>
+  
+        
+            
+        
+            
+    
+    
+    {# <div class="col col-1 right">
+        <button on="tap:sidebar-right.toggle" id="burger" class="{#btn-no-style#}{#} nav-btn sm-hide md-hide lg-hide"><i class="fas fa-bars fa-2x"></i></button>
+    </div> #}
+
+
+
+
+
+{# <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{#{ path('welcome') }#}{#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{#{ path('addArticle') }#}{#">Ajout Article</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{#{ path('listArticle') }#}{#">Articles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{#{ path('register') }#}{#">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>#}

@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}History{% endblock %}
+
+{% block body %}
+{% if pager.haveToPaginate %}
+        {{ pagerfanta(pager, 'default', {'routeName': 'homepage_paginated'}) }}
+    {% endif %}
+<div class="row">
+    <div class="col col-md-12 pagerfanta" id="blog-menu">
+    {% for item in pager.currentPageResults %}
+        {#{ pagerfanta(pagerfanta) | merge([]) | json_encode }#}
+        {{ item.name }}
+    {% endfor %}
+    </div>
+    {#{ dump(articles) }#}
+    {{ dump(pager) }}
+    
+    <a href="{{ path('home') }}">Home</a>
+    <a href="{{ path('contact') }}">Contact</a>
+</div>
+
+{# {% for page in pages %}
+<div>
+    <h5>{{ page.code }}</h5><br />
+    {% for translation in page.translations %}
+            <h5>{{ translation.slug }}</h5><br />
+
+    {% endfor %}
+</div>
+{% endfor %} #}
+
+{% endblock %}

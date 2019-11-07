@@ -1,0 +1,120 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col col-md-12" id="blog-menu">
+    </div>
+    {{ dump(page) }}
+    {{ dump(pages) }}
+    
+
+</div>
+<div class="row" id="background-test">
+    <div class="col col-md-7 offset-md-1">
+        <div class="row">
+            {% if pages is not null %}
+                {% for page in pages %}
+                    {% for translation in page.translations %}
+                        
+                        <div class="col col-md-12 blog-cart">
+                            <a href="{{ path('blog_show', {'id': translation.id, 'slug': translation.slug}) }}"><h3>{{ translation.name }}</h3></a>
+                            <hr>
+                            <br />
+                            {% if translation.image is not null %}
+                                <div class="text-center">
+                                    <img
+                                    src="{{ asset( uploadpath ~ translation.image.path) }}"
+                                    alt="{{ translation.name }}"
+                                    class="img-fluid article-image"
+                                    />
+                                </div>
+                                <br /><br />
+                            {% endif %}
+                                
+                            {{ translation.content | truncate(700, true) | raw }}
+                            <a href="#">lire l'article</a>
+                            <br />
+                            <hr>
+                            <div class="row">
+                                <div class="col col-md-12">
+                                    {% set foo = translation.metaKeywords|split(' ') %}
+                            
+                                    {% for item in foo %}
+                                            
+                                        <a href="{#{ path('blog_search', {'keyword': category.name}) }#}">
+                                            <span class="badge badge-warning">
+                                                {{ item }}
+                                            </span>
+                                        </a>
+                                            
+                                    {% endfor %}
+                                    <br /><br />                                   
+                                </div>
+                            </div>                            
+                                            
+                    {% endfor %}
+
+                            <div class="row">
+                                <div class="col col-md-12">
+                                    Publié le : {{ page.createdAt|date('d/m/Y/H:i') }}
+                                    {% if page.updatedAt is not null %}
+                                        {% set diff = diff_updated(page.createdAt, page.updatedAt) %}
+                                        {% if diff > 0 %}
+                                            , modifié le {{ page.updatedAt|date('d/m/Y/H:i') }}
+                                        {% endif %}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% else %}
+                <p>
+                    Il n'y a pas d'article disponible, revenez plus tard.
+                </p>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col col-md-12">
+                {% if pages.haveToPaginate %}
+                    {{ pagerfanta(pages, 'twitter_bootstrap4') }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col col-md-2 offset-md-1" id="blog-side">
+        <h5>
+            Mots clés
+        </h5>
+        <br />
+
+        {% if keywords is not null %}
+            {% for keyword in keywords %}
+
+                <a href="{#{ path('blog_search', {'keyword': category.name}) }#}">
+                    <h6>{{ keyword }}</h6>
+                </a>
+    
+            {% endfor %}
+        {% else %}
+
+            <span>Il n'y a pas encore des mots clés...</span>
+
+        {% endif %}
+        
+        <hr>
+        <br />
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

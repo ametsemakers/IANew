@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="#">
+        <img src="{{ asset('assets/main/img/logo-alternative.jpg') }}"
+            alt="logo"
+            id=""
+            width="48px"
+            height="48px"
+        />
+        L'istant Ayurveda |
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path('home') }}">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('blog') }}">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('sylius_shop_homepage') }}">Boutique</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('contact') }}">Contact</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            {# <li class="nav-item">
+                <a class="nav-link waves-effect waves-light">
+                   <img src="{{ asset('assets/main/img/facebook.png') }}"
+                        alt="facebook"
+                        id=""
+                        width="30px"
+                        height="30px"
+                    /> 
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <img src="{{ asset('assets/main/img/insta.png') }}"
+                        alt="instagram"
+                        id=""
+                        width="30px"
+                        height="30px"
+                    />
+                </a>
+            </li> #}
+            <li class="nav-item">
+                <a class="nav-link" id="login" href="#">
+                    <img src="{{ asset('assets/main/img/login.png') }}"
+                        alt="login"
+                        id=""
+                        width="30px"
+                        height="30px"
+                    />
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{# <div class="row justify-content-center social-bar">
+    <div class="col col-md-6 text-center">
+        <span class="d-inline align-middle h5">Trouvez-nous sur les réseaux sociaux :</span>
+        <a href="#" class="d-inline social-bar-img">
+            <img src="{{ asset('assets/main/img/facebook.png') }}"
+                alt="facebook"
+                id=""
+                width="30px"
+                height="30px"
+            /> 
+        </a>
+        <a href="#" class="d-inline social-bar-img">
+            <img src="{{ asset('assets/main/img/insta.png') }}"
+                alt="instagram"
+                id=""
+                width="30px"
+                height="30px"
+            />
+        </a>       
+    </div>
+</div> #}
+<div class="icon-bar">
+    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+</div>

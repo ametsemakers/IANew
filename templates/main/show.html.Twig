@@ -1,0 +1,89 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Blog 
+
+    {% if page is not null %}
+        {% for translation in page.translations %}
+           / {{ translation.slug }}
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col col-md-12" id="blog-menu">
+    </div>
+    {{ dump(page) }}
+    
+
+</div>
+
+<div class="row">
+            {% if page is not null %}
+
+                    {% for translation in page.translations %}
+                        
+                        <div class="col col-md-10 blog-cart mx-auto">
+                            <h3 class="text-center">{{ translation.name }}</h3>
+                            <hr>
+                            <br />
+                            {% if translation.image is not null %}
+                                <div class="text-center">
+                                    <img
+                                    src="{{ asset( uploadpath ~ translation.image.path) }}"
+                                    alt="{{ translation.name }}"
+                                    class="img-fluid article-image"
+                                    />
+                                </div>
+                                <br /><br />
+                            {% endif %}
+                                
+                            {{ translation.content | raw }}
+                            
+                            <br />
+                            <hr>
+                            <div class="row">
+                                <div class="col col-md-12">
+                                    {% set foo = translation.metaKeywords|split(' ') %}
+                            
+                                    {% for item in foo %}
+                                            
+                                        <a href="{#{ path('blog_search', {'keyword': category.name}) }#}">
+                                            <span class="badge badge-warning">
+                                                {{ item }}
+                                            </span>
+                                        </a>
+                                            
+                                    {% endfor %}
+                                    <br /><br />                                   
+                                </div>
+                            </div>                            
+                                            
+                    {% endfor %}
+
+                            <div class="row">
+                                <div class="col col-md-12">
+                                    Publié le : {{ page.createdAt|date('d/m/Y/H:i') }}
+                                    {% if page.updatedAt is not null %}
+                                        {% set diff = diff_updated(page.createdAt, page.updatedAt) %}
+                                        {% if diff > 0 %}
+                                            , modifié le {{ page.updatedAt|date('d/m/Y/H:i') }}
+                                        {% endif %}
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+                        </div>
+                
+            {% else %}
+                <p class="mt-5 text-center">
+                    L'article recherché n'existe pas.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

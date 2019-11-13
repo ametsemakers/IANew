@@ -9,6 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use BitBag\SyliusCmsPlugin\Entity\Block;
 use BitBag\SyliusCmsPlugin\Entity\Page;
 use App\Service\KeywordGenerator;
+use Sylius\Bundle\CoreBundle\Form\Type\ContactType;
+use Sylius\Bundle\ShopBundle\EmailManager\ContactEmailManagerInterface;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 //use Pagerfanta\Adapter\DoctrineORMAdapter;
 //use Pagerfanta\Pagerfanta;
 
@@ -17,9 +22,16 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function home(Request $request)
     {
-        return $this->render('main/home.html.twig');
+        $page = $this->getDoctrine()
+            ->getRepository(PAGE::class)
+            ->findLatestBlogArticle()
+        ;
+
+        return $this->render('main/home.html.twig', [
+            'page' => $page
+        ]);
     }
 
     /**
@@ -37,7 +49,7 @@ class AppController extends AbstractController
         {
             $keyword = $request->attributes->get('keyword');
 
-            // repository takes 3 arguments: nb of results per page, pagenumber, keyword to search
+            // repository takes 3 arguments: nb of results per page, active page, keyword to search
             $pages = $this->getDoctrine()
             ->getRepository(PAGE::class)
             ->findBlogArticlesByKeyword(5, $page, $keyword)
@@ -91,14 +103,6 @@ class AppController extends AbstractController
         return $this->render('main/show.html.twig', [
             'page' => $page,
         ]);
-    }
-
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contact()
-    {
-        return $this->render('main/contact.html.twig');
     }
 
     /**

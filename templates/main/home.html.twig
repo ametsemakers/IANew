@@ -17,8 +17,8 @@
                         id="hero-image-logo"
                     /> 
                 </div>
-                <div id="separation-line-home"></div>
-                <div class="col-7 col-md-6 text-center">
+                <!--<div id="separation-line-home"></div>-->
+                <div class="col-7 col-md-7 text-center">
                     <p id="hero-intro-home">
                         Massages traditionnels et<br />
                         alimentation selon<br />
@@ -133,6 +133,7 @@
             <h5 class="yellow-line">Dernier article du blog :</h5>
             {#<hr>#}
             <br />
+            {{ dump(page) }}
             <h3 class="yellow-line">{#{ blogPost.title }#}</h3>
                 {#<hr>#}
                 <br />
@@ -190,7 +191,7 @@
 
 
 
-    <div class="row justify-content-center">
+    {# <div class="row justify-content-center">
         <div class="col col-md-2">
             <img src="{{ asset('assets/main/img/symbole.png') }}"
                 alt=""
@@ -288,8 +289,8 @@
             />
             {#<div class="rounded-circle" id="img-rose-home">
             </div>#}
-        </div>
-    </div>
+        {#</div>
+    </div> #}
     <hr>
     <div class="row">
         <div class="col col-12 text-center home-font-big">

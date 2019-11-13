@@ -3,8 +3,24 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class="col-sm-8 mx-auto bg-white mt-5" id="contact-form">
+            <br /><br/>
+            <h2>Formulaire de contact</h2>
+            <br />
+            <div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
 
-Contact
-<a href="{{ path('blog') }}">Blog</a>
-<a href="{{ path('home') }}">Home</a>
+                <div class="form-group row">
+                    <div class="col-12">
+                        <input type="submit" value="Envoyer" class="btn btn-block contact-button"/>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>        
+
 {% endblock %}

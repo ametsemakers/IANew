@@ -4,3 +4,4 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         uploadpath: "media/image/"
+    form_themes: ['bootstrap_4_layout.html.twig']

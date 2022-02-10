@@ -34,7 +34,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglifycss": "^1.0.5",
     "merge-stream": "^1.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.0",
     "rollup": "^0.60.7",
     "rollup-plugin-babel": "^3.0.4",
